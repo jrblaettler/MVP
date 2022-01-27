@@ -7,6 +7,7 @@ interface CommentProps {
 }
 
 interface Comment {
+  id: number;
   User: string;
   body: string;
   exercise_id: number;
@@ -31,6 +32,16 @@ export const CommentCard = (props: CommentProps): JSX.Element => {
     }
   };
 
+  const deleteComment = async (comment: Comment): Promise<void> => {
+    try {
+      await axios.delete(`/api/comments/${comment.id}`);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      getComments();
+    }
+  };
+
   const handleCommentSubmit = async (
     e: React.SyntheticEvent
   ): Promise<void> => {
@@ -45,6 +56,8 @@ export const CommentCard = (props: CommentProps): JSX.Element => {
     } catch (err) {
       console.log(err);
     } finally {
+      setCommentUser('');
+      setCommentBody('');
       getComments();
     }
   };
@@ -55,6 +68,7 @@ export const CommentCard = (props: CommentProps): JSX.Element => {
         <section className='comment-item'>
           <p>{comment.User}</p>
           <p>{comment.body}</p>
+          <button onClick={() => deleteComment(comment)}>Delete</button>
         </section>
       );
     });
@@ -71,12 +85,14 @@ export const CommentCard = (props: CommentProps): JSX.Element => {
             type='text'
             name='user'
             onChange={e => setCommentUser(e.target.value)}
+            value={commentUser}
           />
           <label htmlFor='comment'>Comment:</label>
           <input
             type='text'
             name='comment'
             onChange={e => setCommentBody(e.target.value)}
+            value={commentBody}
           />
           <button type='submit'>Submit</button>
         </form>

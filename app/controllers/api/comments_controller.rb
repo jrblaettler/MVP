@@ -18,6 +18,11 @@ class Api::CommentsController < ApplicationController
     render json: Comment.where(exercise_id: params[:id])
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+  end
+
   private
     def comment_params
       params.require(:comment).permit(:User, :body, :exercise_id)
