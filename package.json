@@ -4,6 +4,7 @@
     "vite-plugin-ruby": "^3.0.8"
   },
   "dependencies": {
+    "@types/react": "^17.0.38",
     "@vitejs/plugin-react": "^1.1.4",
     "axios": "^0.25.0"
   }

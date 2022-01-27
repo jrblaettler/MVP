@@ -241,3 +241,16 @@ h3 {
   height: 50%;
   border: rgb(216, 215, 199), 5px, solid;
 }
+
+.comment-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.comment-item {
+  margin-top: 10px;
+  width: 100%;
+  background-color: rgba(3, 174, 236, 0.199);
+}

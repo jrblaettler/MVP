@@ -12,7 +12,6 @@ export const Search = (props: SearchProps): JSX.Element => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log('hi');
     props.onSubmit(term, e);
   };
 
