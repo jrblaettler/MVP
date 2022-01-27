@@ -14,10 +14,10 @@ export const ExerciseList = (props: ExerciseProps): JSX.Element => {
       props.exercises.map((exercise: Exercise) => {
         if (props.hasEquipment.length) {
           if (props.hasEquipment.includes(exercise.equipment)) {
-            return <ExerciseCard exercise={exercise} />;
+            return <ExerciseCard exercise={exercise} key={exercise.id} />;
           }
         } else {
-          return <ExerciseCard exercise={exercise} />;
+          return <ExerciseCard exercise={exercise} key={exercise.id} />;
         }
       })
     ) : (
