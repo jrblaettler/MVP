@@ -14,15 +14,15 @@ export interface Exercise {
   target: string;
 }
 export const App = () => {
-  const [exercises, setExercises] = useState<undefined | Exercise[]>(undefined);
-  const [equipment, setEquipment] = useState<undefined | string[]>(undefined);
+  const [exercises, setExercises] = useState<Exercise[]>(null);
+  const [equipment, setEquipment] = useState<string[]>(null);
   const [hasEquipment, setHasEquipment] = useState<string[]>([]);
 
   useEffect(() => {
     handleSetEquipment();
   }, []);
 
-  const handleSetExercises = async (bodyPart: string): Promise<void> => {
+  const handleSetExercises = async (bodyPart: string) => {
     try {
       const { data } = await exerciseDb.get(`bodyPart/${bodyPart}`);
       setExercises(data);
@@ -31,7 +31,7 @@ export const App = () => {
     }
   };
 
-  const handleSetEquipment = async (): Promise<void> => {
+  const handleSetEquipment = async () => {
     try {
       const { data } = await exerciseDb.get('equipmentList');
       setEquipment(data);
@@ -40,15 +40,13 @@ export const App = () => {
     }
   };
 
-  const handleHasEquipment = (pieceName: string): void => {
+  const handleHasEquipment = (pieceName: string) => {
     hasEquipment.includes(pieceName)
       ? setHasEquipment(hasEquipment.filter(piece => piece !== pieceName))
       : setHasEquipment([...hasEquipment, pieceName]);
   };
 
-  const handleSearchSubmit = async (
-    term: string | undefined
-  ): Promise<void> => {
+  const handleSearchSubmit = async (term: string) => {
     const { data } = await exerciseDb.get(`name/${term}`);
     setExercises(data);
   };

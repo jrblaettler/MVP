@@ -7,7 +7,7 @@ interface CardProps {
 }
 
 export const ExerciseCard = (props: CardProps) => {
-  const [isOpen, setOpen] = useState<boolean>(false);
+  const [isOpen, setOpen] = useState(false);
   return (
     <>
       <article

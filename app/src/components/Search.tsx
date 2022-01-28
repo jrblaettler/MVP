@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 
 interface SearchProps {
   className: string;
@@ -7,10 +7,10 @@ interface SearchProps {
   placeholder?: string;
 }
 
-export const Search = (props: SearchProps): JSX.Element => {
+export const Search = (props: SearchProps) => {
   const [term, setTerm] = useState('');
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     props.onSubmit(term, e);
   };

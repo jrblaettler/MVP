@@ -5,13 +5,13 @@ interface PartsListProps {
   handleSetExercises: (bodyPart: string) => Promise<void>;
 }
 
-export const BodyPartsList = (props: PartsListProps): JSX.Element => {
-  const [bodyParts, setBodyParts] = useState<string[] | undefined>(undefined);
+export const BodyPartsList = (props: PartsListProps) => {
+  const [bodyParts, setBodyParts] = useState<string[]>(null);
   useEffect(() => {
     getBodyParts();
   }, []);
 
-  const getBodyParts = async (): Promise<void> => {
+  const getBodyParts = async () => {
     try {
       const { data } = await exerciseDb.get('bodyPartList');
       setBodyParts(data);
@@ -20,9 +20,9 @@ export const BodyPartsList = (props: PartsListProps): JSX.Element => {
     }
   };
 
-  const renderBodyPartList = (): JSX.Element | JSX.Element[] => {
+  const renderBodyPartList = () => {
     return bodyParts ? (
-      bodyParts.map((part: string, i: number) => (
+      bodyParts.map((part, i) => (
         <p
           className='body-part-item'
           key={i}

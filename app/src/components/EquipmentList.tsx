@@ -1,12 +1,12 @@
 interface EquipmentProps {
-  equipment: undefined | string[];
+  equipment: null | string[];
   handleHasEquipment: (pieceName: string) => void;
 }
 
-export const EquipmentList = (props: EquipmentProps): JSX.Element => {
-  const renderEquipmentList = (): JSX.Element | JSX.Element[] => {
+export const EquipmentList = (props: EquipmentProps) => {
+  const renderEquipmentList = () => {
     return props.equipment ? (
-      props.equipment.map((piece: string, i: number) => {
+      props.equipment.map((piece, i) => {
         return (
           <div className='equipment-item' key={i}>
             <input

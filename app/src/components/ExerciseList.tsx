@@ -7,9 +7,10 @@ interface ExerciseProps {
   hasEquipment: string[];
 }
 
-export const ExerciseList = (props: ExerciseProps): JSX.Element => {
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const renderExerciseList = (): (JSX.Element | undefined)[] | JSX.Element => {
+export const ExerciseList = (props: ExerciseProps) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const renderExerciseList = () => {
     return props.exercises ? (
       props.exercises.map((exercise: Exercise) => {
         if (props.hasEquipment.length) {

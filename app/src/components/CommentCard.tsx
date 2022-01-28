@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { Exercise } from '../App';
 import axios from 'axios';
 
@@ -15,15 +15,15 @@ interface Comment {
 
 export const CommentCard = (props: CommentProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
-  const [commentUser, setCommentUser] = useState<string>('');
-  const [commentBody, setCommentBody] = useState<string>('');
+  const [commentUser, setCommentUser] = useState('');
+  const [commentBody, setCommentBody] = useState('');
   const [comments, setComments] = useState<Comment[]>([]);
 
   useEffect(() => {
     getComments();
   }, []);
 
-  const getComments = async (): Promise<void> => {
+  const getComments = async () => {
     try {
       const { data } = await axios.get(`api/comments/${props.exercise.id}`);
       setComments(data);
@@ -32,7 +32,7 @@ export const CommentCard = (props: CommentProps): JSX.Element => {
     }
   };
 
-  const deleteComment = async (comment: Comment): Promise<void> => {
+  const deleteComment = async (comment: Comment) => {
     try {
       await axios.delete(`/api/comments/${comment.id}`);
     } catch (err) {
@@ -42,9 +42,7 @@ export const CommentCard = (props: CommentProps): JSX.Element => {
     }
   };
 
-  const handleCommentSubmit = async (
-    e: React.SyntheticEvent
-  ): Promise<void> => {
+  const handleCommentSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const body = {
