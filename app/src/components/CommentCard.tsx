@@ -13,7 +13,7 @@ interface Comment {
   exercise_id: number;
 }
 
-export const CommentCard = (props: CommentProps) => {
+export const CommentCard = (props: CommentProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const [commentUser, setCommentUser] = useState('');
   const [commentBody, setCommentBody] = useState('');
